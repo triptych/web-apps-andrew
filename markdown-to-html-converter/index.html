@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5" />
+  <title>Markdown to HTML Converter</title>
+  <link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body>
+  <app-layout theme="light">
+    <app-tabs>
+      <tab-panel label="Editor">
+        <app-editor></app-editor>
+      </tab-panel>
+      <tab-panel label="Preview">
+        <app-preview></app-preview>
+      </tab-panel>
+      <tab-panel label="HTML Source">
+        <app-source></app-source>
+      </tab-panel>
+    </app-tabs>
+  </app-layout>
+
+  <app-modal id="copy-modal">
+    <span slot="title">Copied!</span>
+    <span slot="body">HTML source copied to clipboard.</span>
+  </app-modal>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
