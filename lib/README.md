@@ -4,8 +4,9 @@ Plain JS custom elements. No build step, no dependencies. Import via `<script ty
 
 ## Modules
 
-| File | Elements | Description |
+| File | Elements / Exports | Description |
 |------|----------|-------------|
+| `bus.js` | `bus` | Singleton event bus for decoupled component communication |
 | `drag-drop.js` | `<drag-container>`, `<drag-item>` | Sortable drag-and-drop lists |
 | `tabs.js` | `<tab-group>`, `<tab-item>`, `<tab-panel>` | Accessible tabbed interface |
 | `menu.js` | `<drop-menu>`, `<menu-item>`, `<menu-separator>` | Dropdown/context menu |
@@ -15,6 +16,14 @@ Plain JS custom elements. No build step, no dependencies. Import via `<script ty
 | `tooltip.js` | `<tool-tip>` | Hover/focus tooltips |
 
 ## Usage
+
+```js
+// Event bus
+import { bus } from './lib/bus.js';
+const off = bus.on('something:happened', (e) => console.log(e.detail));
+bus.emit('something:happened', { value: 42 });
+off(); // unsubscribe
+```
 
 ```html
 <script type="module" src="./llib/tabs.js"></script>
