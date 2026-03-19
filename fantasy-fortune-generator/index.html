@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#c9a227">
+  <title>Fantasy Fortune Generator</title>
+  <link rel="stylesheet" href="./styles/main.css">
+  <script type="module" src="./js/main.js"></script>
+</head>
+<body>
+  <app-layout theme="dark">
+    <div slot="header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+      <div>
+        <h1 class="site-title">&#x2694;&#xFE0F; Fantasy Fortune Generator</h1>
+        <p class="site-subtitle">Consult the oracle. Heed the prophecy.</p>
+      </div>
+      <button class="theme-btn" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">&#x1F313;</button>
+    </div>
+
+    <div class="page-content">
+      <fortune-card></fortune-card>
+      <fortune-history></fortune-history>
+    </div>
+
+    <span slot="footer">Forged in the fires of Mount Syntax &bull; No goblins were harmed</span>
+  </app-layout>
+
+  <script type="module">
+    const toggle = document.getElementById('theme-toggle');
+    const layout = document.querySelector('app-layout');
+    let dark = true;
+    toggle.addEventListener('click', () => {
+      dark = !dark;
+      layout.setAttribute('theme', dark ? 'dark' : 'light');
+      toggle.textContent = dark ? '\uD83C\uDF13' : '\u2600\uFE0F';
+    });
+  </script>
+</body>
+</html>
