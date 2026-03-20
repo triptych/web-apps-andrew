@@ -81,30 +81,40 @@ export class FortuneCard extends HTMLElement {
   #render() {
     this.#root.innerHTML = `
       <style>
-        :host { display: block; }
+        :host { display: block; width: 100%; }
         .card {
           background: var(--color-surface);
           border: 2px solid var(--color-border);
           border-radius: var(--radius-lg);
           box-shadow: var(--shadow-card);
           padding: 2.5rem 2rem;
-          max-width: 480px;
           width: 100%;
           text-align: center;
           position: relative;
+          overflow: hidden;
           transition: transform var(--transition), box-shadow var(--transition);
         }
         .scroll-top, .scroll-bottom {
-          width: 100%;
+          width: calc(100% + 4rem);
           height: 24px;
           background: var(--color-scroll);
-          border-radius: var(--radius-lg);
-          margin: -2.5rem -2rem;
           display: block;
+          margin-left: -2rem;
+          margin-right: -2rem;
         }
-        .scroll-top { margin-bottom: 1.5rem; margin-top: 0; border-radius: var(--radius-lg) var(--radius-lg) 4px 4px; }
-        .scroll-bottom { margin-top: 1.5rem; margin-bottom: 0; border-radius: 4px 4px var(--radius-lg) var(--radius-lg); }
-        .rune { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .scroll-top { margin-top: -2.5rem; margin-bottom: 1.5rem; border-radius: var(--radius-lg) var(--radius-lg) 4px 4px; }
+        .scroll-bottom { margin-top: 1.5rem; margin-bottom: -2.5rem; border-radius: 4px 4px var(--radius-lg) var(--radius-lg); }
+        .fairy-img {
+          width: 140px;
+          height: auto;
+          border-radius: 50%;
+          margin-bottom: 1rem;
+          box-shadow: 0 0 28px rgba(201,160,240,0.4), 0 0 8px rgba(201,160,240,0.2);
+          border: 2px solid var(--color-border);
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
         .title {
           font-family: var(--font-display);
           font-size: 1.1rem;
@@ -164,7 +174,7 @@ export class FortuneCard extends HTMLElement {
         }
       </style>
       <div class="card" tabindex="${this.#revealed ? -1 : 0}" role="region" aria-label="Fortune card">
-        <div class="rune">&#x1F4DC;</div>
+        <img class="fairy-img" src="./img/fairy.png" alt="The fairy oracle" />
         <div class="title">The Oracle Speaks</div>
         ${this.#revealed
           ? `<p class="fortune-text reveal-anim">"${this.#fortune}"</p>`

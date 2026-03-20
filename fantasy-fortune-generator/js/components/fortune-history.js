@@ -25,7 +25,7 @@ export class FortuneHistory extends HTMLElement {
   #render() {
     this.#root.innerHTML = `
       <style>
-        :host { display: block; width: 100%; max-width: 480px; }
+        :host { display: block; width: 100%; }
         .panel {
           background: var(--color-surface);
           border: 1px solid var(--color-border);

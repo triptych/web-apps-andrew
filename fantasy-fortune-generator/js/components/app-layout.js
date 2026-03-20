@@ -21,7 +21,12 @@ export class AppLayout extends HTMLElement {
           font-family: var(--font-body);
         }
         header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--color-border); }
-        main   { flex: 1; padding: 2rem; display: flex; align-items: center; justify-content: center; }
+        main   {
+          flex: 1;
+          padding: 2rem;
+          display: grid;
+          place-items: start center;
+        }
         footer { padding: 1rem 2rem; text-align: center; font-size: 0.8rem; opacity: 0.6; border-top: 1px solid var(--color-border); }
       </style>
       <header><slot name="header"></slot></header>
