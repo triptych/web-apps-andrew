@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-03-22
+
+### Added
+- `alife-sim` — Artificial life simulator with genetic algorithms and Three.js rendering
+  - 16-gene float genome encoding speed, size, aggression, metabolism, sense range, hue, fertility, longevity, and more
+  - Uniform crossover and Gaussian mutation; mutation rate is itself a heritable gene
+  - Creatures sense food and other creatures within a configurable field-of-view
+  - Predator/prey dynamics: aggressive larger creatures can eat smaller ones
+  - Reproduction requires sufficient energy and proximity to a compatible mate
+  - Three.js orthographic renderer with instanced meshes for creatures and food
+  - Simulation tab with play/pause/reset controls and speed multiplier
+  - Gene Pool tab showing live creature portraits with trait bars
+  - Stats tab with population-over-time chart and average trait readout
+  - Click any creature to inspect its full genome and stats in a modal
+
 ## [0.1.0] - 2026-03-16
 
 ### Added

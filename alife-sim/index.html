@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0f1e" />
+  <title>A-Life Simulator</title>
+  <link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body>
+  <app-layout>
+    <app-tabs>
+      <tab-panel label="Simulation">
+        <div id="sim-panel">
+          <div id="canvas-container"></div>
+          <sim-controls></sim-controls>
+        </div>
+      </tab-panel>
+      <tab-panel label="Gene Pool">
+        <gene-pool-view></gene-pool-view>
+      </tab-panel>
+      <tab-panel label="Stats">
+        <stats-view></stats-view>
+      </tab-panel>
+    </app-tabs>
+  </app-layout>
+
+  <app-modal id="creature-modal">
+    <div slot="title">Creature Details</div>
+    <div slot="body" id="modal-creature-body"></div>
+  </app-modal>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
