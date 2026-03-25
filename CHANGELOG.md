@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-03-25
+
+### Added
+- `index.html` — linked Artificial Life Simulator in the main app index
+
 ## [0.2.0] - 2026-03-22
 
 ### Added
