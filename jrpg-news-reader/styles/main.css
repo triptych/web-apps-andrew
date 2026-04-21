@@ -1,0 +1,79 @@
+/* ── Design tokens ── */
+:root {
+  --color-bg:         #0f0820;
+  --color-surface:    #1a1030;
+  --color-surface-2:  #221640;
+  --color-text:       #e8d8ff;
+  --color-text-muted: #8870a8;
+  --color-accent:     #c084fc;
+  --color-accent2:    #f0abfc;
+  --color-accent-hover: #a855f7;
+  --color-accent-glow: rgba(192, 132, 252, 0.4);
+  --color-border:     #2e1f50;
+  --color-code-bg:    #110720;
+  --color-error:      #f87171;
+  --color-error-bg:   #2d0e0e;
+
+  --font-body:    'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+
+  --radius:    12px;
+  --radius-sm: 6px;
+  --shadow:    0 2px 16px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.7);
+  --transition: all 0.2s ease;
+}
+
+[data-theme="light"] {
+  --color-bg:         #f5f0ff;
+  --color-surface:    #ffffff;
+  --color-surface-2:  #ede9f6;
+  --color-text:       #1a0a2e;
+  --color-text-muted: #6b46a0;
+  --color-accent:     #7c3aed;
+  --color-accent2:    #a855f7;
+  --color-accent-hover: #6d28d9;
+  --color-accent-glow: rgba(124, 58, 237, 0.2);
+  --color-border:     #d9c8f0;
+  --color-code-bg:    #ede9f6;
+  --color-error:      #dc2626;
+  --color-error-bg:   #fef2f2;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Utilities ── */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.flex  { display: flex; }
+.grid  { display: grid; }
+
+/* ── Scrollbar (Webkit) ── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* ── Selection ── */
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}

@@ -68,13 +68,16 @@ export class World {
         if (c.energy < c.traits.fertility) continue;
         if (Math.random() > cfg.reproductionRate) continue;
 
-        // find nearby mate of same-ish hue
+        // find nearby mate — sociability gene controls search radius and hue tolerance
         let mate = null;
+        const mateRadius = 20 + c.traits.sociability * 80;   // 20–100 units
+        const hueTol     = 30 + c.traits.sociability * 120;  // 30–150° hue tolerance
+        const r2 = mateRadius * mateRadius;
         for (const other of alive) {
           if (other.id === c.id) continue;
           const dx = c.x - other.x, dy = c.y - other.y;
-          if (dx*dx + dy*dy > 900) continue;  // 30 units
-          if (Math.abs(other.traits.hue - c.traits.hue) < 90) {
+          if (dx*dx + dy*dy > r2) continue;
+          if (Math.abs(other.traits.hue - c.traits.hue) < hueTol) {
             mate = other; break;
           }
         }

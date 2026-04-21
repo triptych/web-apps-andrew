@@ -3,6 +3,7 @@
  * Uses instanced meshes for performance.
  */
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js';
+import { BIOMES } from '../sim/food.js';
 
 export class SimRenderer {
   /**
@@ -45,6 +46,32 @@ export class SimRenderer {
   _buildScene() {
     const MAX_C = 300;
     const MAX_F = 600;
+
+    // ── Biome quadrant overlays ───────────────────────────────────────
+    // Colors keyed to biome type — subtle tint, not distracting
+    const biomeColors = {
+      herbivore:  0x0a2e0a,  // dark green (Lush)
+      desert:     0x2e1e00,  // dark amber (Desert)
+      carnivore:  0x2e0a0a,  // dark red   (Hunting)
+      social:     0x0a0a2e,  // dark blue  (Twilight)
+    };
+    this._biomeMeshes = [];
+    // We'll size them on first resize; store placeholders now
+    for (const biome of BIOMES) {
+      const geo = new THREE.PlaneGeometry(1, 1);
+      const mat = new THREE.MeshBasicMaterial({
+        color:       biomeColors[biome.type] ?? 0x111111,
+        transparent: true,
+        opacity:     0.18,
+        depthWrite:  false,
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.z = -0.5;
+      mesh.userData.biome = biome;
+      this.scene.add(mesh);
+      this._biomeMeshes.push(mesh);
+    }
+    this._biomeLabelsDirty = true;
 
     // ── Background grid ───────────────────────────────────────────────
     const gridMat   = new THREE.LineBasicMaterial({ color: 0x0f1a2e });
@@ -96,7 +123,19 @@ export class SimRenderer {
     this._dummy = new THREE.Object3D();
   }
 
+  _updateBiomeQuads() {
+    const w = this._w, h = this._h;
+    const hw = w / 2, hh = h / 2;
+    for (const mesh of this._biomeMeshes) {
+      const b = mesh.userData.biome;
+      mesh.scale.set(hw, hh, 1);
+      mesh.position.set(hw * (b.qx + 0.5), hh * (b.qy + 0.5), -0.5);
+    }
+    this._biomeLabelsDirty = false;
+  }
+
   update() {
+    if (this._biomeLabelsDirty) this._updateBiomeQuads();
     const { creatures, foods } = this.world;
     const h     = this._h;
     const dummy = this._dummy;
@@ -172,6 +211,7 @@ export class SimRenderer {
     this.camera.bottom = 0;
     this.camera.updateProjectionMatrix();
     this.world.resize(w, h);
+    this._biomeLabelsDirty = true;
   }
 
   dispose() {

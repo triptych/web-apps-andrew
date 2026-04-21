@@ -17,8 +17,8 @@
  * 11  longevity     lifespan scalar
  * 12  mutationRate  chance each gene mutates on offspring
  * 13  wobble        locomotion wiggle amplitude
- * 14  r1            reserved / future use
- * 15  r2            reserved / future use
+ * 14  camouflage    harder for predators to sense (0=visible, 1=stealthy)
+ * 15  diet          0=herbivore (better food efficiency), 1=carnivore (better predation)
  */
 
 export const GENOME_LENGTH = 16;
@@ -75,5 +75,7 @@ export function decode(g) {
     longevity:   800 + g[11] * 3200,        // max age ticks
     mutationRate:g[12] * 0.15 + 0.01,
     wobble:      g[13] * 1.4,
+    camouflage:  g[14],                          // 0–1
+    diet:        g[15],                          // 0=herbivore, 1=carnivore
   };
 }
